@@ -308,6 +308,15 @@
     }
 }
 
+- (void)getUrl:(CDVInvokedUrlCommand*)command
+{
+     CDVPluginResult* pluginResult = nil;
+    
+     NSString *message = [NSString stringWithFormat:@"{\"result\":\"%@\"}", [self.themeableBrowserViewController.currentURL absoluteString]];
+     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: message];
+     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)show:(CDVInvokedUrlCommand*)command
 {
     [self show:command withAnimation:YES];

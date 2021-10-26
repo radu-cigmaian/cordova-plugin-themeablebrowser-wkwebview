@@ -76,6 +76,7 @@
 
 - (CDVThemeableBrowserOptions*)parseOptions:(NSString*)options;
 - (void)open:(CDVInvokedUrlCommand*)command;
+- (void)getUrl:(CDVInvokedUrlCommand*)command;
 - (void)close:(CDVInvokedUrlCommand*)command;
 - (void)injectScriptCode:(CDVInvokedUrlCommand*)command;
 - (void)show:(CDVInvokedUrlCommand*)command;

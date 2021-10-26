@@ -78,7 +78,7 @@ import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginManager;
 import org.apache.cordova.PluginResult;
-import org.apache.cordova.Whitelist;
+import org.apache.cordova.Allowlist;
 import org.apache.cordova.inappbrowser.InAppBrowser;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,7 +167,7 @@ public class ThemeableBrowser extends CordovaPlugin {
                             shouldAllowNavigation = true;
                         }
                         if (shouldAllowNavigation == null) {
-                            shouldAllowNavigation = new Whitelist().isUrlWhiteListed(url);
+                            shouldAllowNavigation = new AllowList().isUrlAllowListed(url);
                         }
                         if (shouldAllowNavigation == null) {
                             try {
@@ -218,6 +218,18 @@ public class ThemeableBrowser extends CordovaPlugin {
         }
         else if (action.equals("close")) {
             closeDialog();
+        }
+        else if (action.equals("getUrl")) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @SuppressLint("NewApi")
+                @Override
+                public void run() {
+                    if (inAppWebView != null) {
+                        String msg = inAppWebView.getUrl();
+                        callbackContext.success("{\"result\": \"" + msg + "\"}");
+                    }
+                }
+             });
         }
         else if (action.equals("injectScriptCode")) {
             String jsWrapper = null;

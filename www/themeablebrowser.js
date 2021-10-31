@@ -91,10 +91,6 @@ ThemeableBrowser.prototype = {
         }
         return this;
     },
-
-    changeButtonImage: function(buttonIndex, buttonProps){
-        exec(null, null, 'ThemeableBrowser', 'changeButtonImage', [buttonIndex, buttonProps]);
-    },
     
     getUrl: function(cb) {
         exec(cb, null, 'ThemeableBrowser', 'getUrl', []);

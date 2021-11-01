@@ -277,7 +277,7 @@
         self.themeableBrowserViewController = [[CDVThemeableBrowserViewController alloc]
                                                initWithBrowserOptions: browserOptions
                                                navigationDelete:self
-                                               statusBarStyle:[UIApplication sharedApplication].statusBarStyle
+                                               statusBarStyle:UIStatusBarStyleLightContent
                                                settings:self.commandDelegate.settings];
 
         if ([self.viewController conformsToProtocol:@protocol(CDVScreenOrientationDelegate)]) {

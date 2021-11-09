@@ -788,16 +788,30 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
         self.callbackId = nil;
     }
+    
+    self.themeableBrowserViewController.view.backgroundColor = [UIColor whiteColor];
+    [self.themeableBrowserViewController.webView stopLoading];
+    [self.themeableBrowserViewController.webView removeFromSuperview];
+    [self.themeableBrowserViewController.webView setUIDelegate:nil];
+    [self.themeableBrowserViewController.webView setNavigationDelegate:nil];
+    
+    
     // Set navigationDelegate to nil to ensure no callbacks are received from it.
     self.themeableBrowserViewController.navigationDelegate = nil;
     // Don't recycle the ViewController since it may be consuming a lot of memory.
     // Also - this is required for the PDF/User-Agent bug work-around.
-    self.themeableBrowserViewController = nil;
+    
     self.callbackId = nil;
     self.callbackIdPattern = nil;
 
     _framesOpened = 0;
     _isShown = NO;
+    self.themeableBrowserViewController.webView = nil;
+    self.themeableBrowserViewController = nil;
+    
+    if (IsAtLeastiOSVersion(@"7.0")) {
+            [[UIApplication sharedApplication] setStatusBarStyle:[self.themeableBrowserViewController preferredStatusBarStyle]];
+        }
 }
 
 - (void)emitEvent:(NSDictionary*)event

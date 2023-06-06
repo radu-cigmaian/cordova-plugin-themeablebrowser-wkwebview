@@ -870,6 +870,7 @@ public class ThemeableBrowser extends CordovaPlugin {
                     ((LinearLayout.LayoutParams) inAppWebViewParams).weight = 1;
                 }
                 inAppWebView.setLayoutParams(inAppWebViewParams);
+		inAppWebView.setBackgroundColor(hexStringToColor("#ffffffff"));
 
                 // File Chooser Implemented ChromeClient
                 inAppWebView.setWebChromeClient(new InAppChromeClient(thatWebView, progressbar) {
